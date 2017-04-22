@@ -31,11 +31,14 @@ class WechatController extends Controller
             switch ($event->InfoType) {
                 case Guard::EVENT_AUTHORIZED: // 授权成功
                     $authorizationInfo = $open_platform->getAuthorizationInfo($event->AuthorizationCode);
-                // 保存数据库操作等...
+                    // 保存数据库操作等...
+                    break;
                 case Guard::EVENT_UNAUTHORIZED: // 更新授权
                     // 更新数据库操作等...
+                    break;
                 case Guard::EVENT_UPDATE_AUTHORIZED: // 授权取消
                     // 更新数据库操作等...
+                    break;
             }
         });
 
