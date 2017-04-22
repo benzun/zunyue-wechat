@@ -41,9 +41,14 @@ class WechatController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function callback()
+    public function callback(Request $request)
     {
-        $info = $this->open_platform->getAuthorizationInfo();
+        $auth_code = $request->get('auth_code');
+
+        if (empty($auth_code)){
+            redirect(route('wechat.index'));
+        }
+        $info = $this->open_platform->getAuthorizationInfo($auth_code);
         dd($info);
         // 获取授权方的公众号帐号基本信息
         //$this->open_platform->->getAuthorizerInfo();
