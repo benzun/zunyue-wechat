@@ -48,10 +48,11 @@ class WechatController extends Controller
         if (empty($auth_code)){
             redirect(route('wechat.index'));
         }
-        $info = $this->open_platform->getAuthorizationInfo($auth_code);
-        dd($info);
+        $info = $this->open_platform->getAuthorizationInfo($auth_code)->toArray();
+        $authorizer_refresh_token = $info['authorization_info']['authorizer_refresh_token'];
         // 获取授权方的公众号帐号基本信息
-        //$this->open_platform->->getAuthorizerInfo();
+        $wechat_info =$this->open_platform->getAuthorizerInfo($info['authorization_info']['authorizer_appid'])->toArray();
+        dd($wechat_info);
     }
 
     /**
