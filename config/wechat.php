@@ -28,11 +28,7 @@ return [
         'app_id'  => 'wx2593e013b31de004',
         'secret'  => '59bed0d3cc04dac260b6e7adf1347aec',
         'token'   => 'b67635d5ff2854263004f5da5f70289e',
-        'aes_key' => 'T1kQHVs9EgDdnJplSw6BtO7vYbRGqao5rzjCFUM3ex8',
-        /**
-         * 事件推送URL
-         */
-        'serve_url' => 'http://wechat.zunyue.me'
+        'aes_key' => 'T1kQHVs9EgDdnJplSw6BtO7vYbRGqao5rzjCFUM3ex8'
     ],
 
     /*
