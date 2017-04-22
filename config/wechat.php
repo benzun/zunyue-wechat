@@ -26,7 +26,7 @@ return [
      */
     'open_platform' => [
         'app_id'  => 'wx2593e013b31de004',
-        'secret'  => '8f66003e70fa53bac8b46f124afdfbbf',
+        'secret'  => '59bed0d3cc04dac260b6e7adf1347aec',
         'token'   => 'b67635d5ff2854263004f5da5f70289e',
         'aes_key' => 'T1kQHVs9EgDdnJplSw6BtO7vYbRGqao5rzjCFUM3ex8',
         /**
