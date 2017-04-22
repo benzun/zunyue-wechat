@@ -16,19 +16,19 @@ return [
     /*
      * 账号基本信息，请从微信公众平台
      */
-    'app_id'  => env('WECHAT_APPID', 'wx3a333aa39ef5b545'),
-    'secret'  => env('WECHAT_SECRET', 'b1a0397f44d4d7e22d46aaa99e5afd5f'),
-    'token'   => env('WECHAT_TOKEN', 'b67635d5ff2854263004f5da5f70289e'),
-    'aes_key' => env('WECHAT_AES_KEY', 'T1kQHVs9EgDdnJplSw6BtO7vYbRGqao5rzjCFUM3ex8'),
+    'app_id'  => 'wx3a333aa39ef5b545',
+    'secret'  => 'b1a0397f44d4d7e22d46aaa99e5afd5f',
+    'token'   => 'b67635d5ff2854263004f5da5f70289e',
+    'aes_key' => 'T1kQHVs9EgDdnJplSw6BtO7vYbRGqao5rzjCFUM3ex8',
 
     /**
      * 开放平台第三方平台配置信息
      */
     'open_platform' => [
-        'app_id'  => env('WECHAT_APPID', 'wx2593e013b31de004'),
-        'secret'  => env('WECHAT_SECRET', '8f66003e70fa53bac8b46f124afdfbbf'),
-        'token'   => env('WECHAT_TOKEN', 'b67635d5ff2854263004f5da5f70289e'),
-        'aes_key' => env('WECHAT_AES_KEY', 'T1kQHVs9EgDdnJplSw6BtO7vYbRGqao5rzjCFUM3ex8'),
+        'app_id'  => 'wx2593e013b31de004',
+        'secret'  => '8f66003e70fa53bac8b46f124afdfbbf',
+        'token'   => 'b67635d5ff2854263004f5da5f70289e',
+        'aes_key' => 'T1kQHVs9EgDdnJplSw6BtO7vYbRGqao5rzjCFUM3ex8',
         /**
          * 事件推送URL
          */
