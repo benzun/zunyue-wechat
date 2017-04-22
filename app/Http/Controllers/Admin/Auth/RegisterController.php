@@ -58,10 +58,20 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'mobile'   => 'required|unique:users',
-            'password' => 'required|min:6|confirmed',
-        ],[
-            
+            'mobile'   => [
+                'required',
+                'regex:/^1(3[0-9]|4[0-9]|5[0-9]|7[0-9]|8[0-9])\d{8}$/',
+                'unique:admin_users',
+            ],
+            'password' => 'required|min:6|alpha_num|confirmed',
+        ], [
+            'mobile.required'    => '手机号码不能为空!',
+            'mobile.regex'       => '手机号码格式不正确!',
+            'mobile.unique'      => '手机号码已存在!',
+            'password.required'  => '密码不能为空!',
+            'password.min'       => '密码不能小于6为数!',
+            'password.alpha_num' => '密码必须是字母或数字!',
+            'password.confirmed' => '两次密码不一致!',
         ]);
     }
 
