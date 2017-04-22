@@ -24,12 +24,12 @@ return [
     /**
      * 开放平台第三方平台配置信息
      */
-    //'open_platform' => [
-    /**
-     * 事件推送URL
-     */
-    //'serve_url' => env('WECHAT_OPEN_PLATFORM_SERVE_URL', 'serve'),
-    //],
+    'open_platform' => [
+        /**
+         * 事件推送URL
+         */
+        'serve_url' => 'http://wechat.zunyue.me'
+    ],
 
     /*
      * 日志配置
