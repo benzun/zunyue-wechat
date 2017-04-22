@@ -177,6 +177,12 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /*
+         * Other Application Service Providers...
+         */
+        App\Providers\ModelServiceProvider::class,
+        Overtrue\LaravelWechat\ServiceProvider::class,
+
     ],
 
     /*
