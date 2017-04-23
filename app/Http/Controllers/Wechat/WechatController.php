@@ -32,10 +32,10 @@ class WechatController extends Controller
             switch ($event->InfoType) {
                 // 授权取消
                 case Guard::EVENT_UNAUTHORIZED:
-                    \Log::infO($event->AuthorizerAppid);
-                    $accounts_business->update($event->AuthorizerAppid, [
-                        'status'           => 'no'
+                    $result = $accounts_business->update($event->AuthorizerAppid, [
+                        'status' => 'no'
                     ]);
+                    \Log::info($result);
                     break;
             }
         });
