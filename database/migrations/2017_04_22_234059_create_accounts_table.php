@@ -33,7 +33,7 @@ class CreateAccountsTable extends Migration
             $table->tinyInteger('idc', 1)->default(0)->comment('');
             $table->string('principal_name', 45)->default('')->comment('主体名称');
             $table->string('signature', 255)->default('')->comment('公众号描述');
-            $table->tinyInteger('func_info', 4)->default(0)->comment('公众号权限');
+            $table->smallInteger('func_info')->unsigned()->default(0)->comment('公众号权限');
             $table->string('authorizer_refresh_token', 255)->default('')->comment('authorizer_refresh_token');
             $table->timestamps();
         });
