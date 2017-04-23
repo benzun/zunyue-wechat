@@ -22,5 +22,9 @@ Route::post('register', 'Auth\RegisterController@register');
 Route::group(['middleware' => 'auth'], function () {
     Route::get('wechat/callback', 'WechatController@callback')->name('wechat.callback');
     Route::resource('wechat', 'WechatController', ['only' => ['index', 'show']]);
+
+    Route::get('users/sync', 'UsersController@sync')->name('users.sync');
+    Route::resource('users', 'UsersController');
+
     Route::get('/', 'IndexController@index')->name('index');
 });
