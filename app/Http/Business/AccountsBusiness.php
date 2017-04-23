@@ -16,11 +16,11 @@ class AccountsBusiness
         $store_data = [];
         foreach ($wechat_info['authorizer_info'] as $key => $value){
             if ($key == 'service_type_info'){
-                $value['service_type_info'] = $value['service_type_info']['id'];
+                $value['service_type_info'] = $value['id'];
             }
 
             if ($key == 'verify_type_info'){
-                $value['verify_type_info'] = $value['verify_type_info']['id'];
+                $value['verify_type_info'] = $value['id'];
             }
 
             if ($key == 'business_info'){
