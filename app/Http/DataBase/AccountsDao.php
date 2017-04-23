@@ -67,8 +67,7 @@ class AccountsDao
             'stauts'
         ]);
         \Log::info($update_data);
-        $sql = $this->model->where('authorizer_appid', $authorizer_appid)->update($update_data)->toSql();
-        \Log::info($sql);
+        return $this->model->where('authorizer_appid', $authorizer_appid)->update($update_data);
 
     }
 }
