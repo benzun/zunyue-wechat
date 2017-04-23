@@ -46,12 +46,15 @@ class WechatController extends Controller
     {
         $auth_code = $request->get('auth_code');
 
-        if (empty($auth_code)){
+        if (empty($auth_code)) {
             redirect(route('wechat.index'));
         }
+        // 获取授权信息
         $info = $this->open_platform->getAuthorizationInfo($auth_code)->toArray();
+        // 刷新Token
+        $wechat_info['authorizer_refresh_token'] = $info['authorization_info']['authorizer_refresh_token'];
         // 获取授权方的公众号帐号基本信息
-        $wechat_info =$this->open_platform->getAuthorizerInfo($info['authorization_info']['authorizer_appid'])->toArray();
+        $wechat_info = $this->open_platform->getAuthorizerInfo($info['authorization_info']['authorizer_appid'])->toArray();
         $accounts_business->store($wechat_info);
     }
 
