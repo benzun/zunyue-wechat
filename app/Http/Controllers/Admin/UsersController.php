@@ -107,7 +107,7 @@ class UsersController extends Controller
                 'wxappid' => 'wx3a333aa39ef5b545',
                 'send_name' => '尊悦云平台',
                 're_openid'        => $openid,
-                'total_amount'     => 10,
+                'total_amount'     => 100,
                 'wishing'          => '祝福语',
                 'act_name'         => '测试活动',
                 'remark'           => '测试备注',
