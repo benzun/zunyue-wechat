@@ -56,4 +56,12 @@ class AccountsBusiness
 
         return $this->dao->store($store_data);
     }
+
+    /**
+     * @param array $update_data
+     */
+    public function update($authorizer_appid = 0, array $update_data = [])
+    {
+        return $this->dao->update($authorizer_appid, $update_data);
+    }
 }

@@ -56,4 +56,17 @@ class AccountsDao
         }
         return $this->model;
     }
+
+    /**
+     * @param int $authorizer_appid
+     * @param array $update_data
+     */
+    public function update($authorizer_appid = 0, array $update_data = [])
+    {
+        $update_data = array_only($update_data, [
+            'stauts'
+        ]);
+
+        return $this->model->where('authorizer_appid', $authorizer_appid)->update($update_data);
+    }
 }
