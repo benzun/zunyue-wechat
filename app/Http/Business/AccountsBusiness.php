@@ -14,7 +14,7 @@ class AccountsBusiness
         }
 
         $store_data = [];
-        foreach ($wechat_info['authorizer_info'] as $key => $value){
+        foreach ($wechat_info['authorizer_info'] as $key => &$value){
             if ($key == 'service_type_info'){
                 $value['service_type_info'] = $value['id'];
             }
