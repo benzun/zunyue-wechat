@@ -2,6 +2,7 @@
 
 namespace App\Http\Business;
 
+use App\Http\Controllers\Helper;
 use App\Http\DataBase\AccountsDao;
 
 class AccountsBusiness
@@ -55,6 +56,8 @@ class AccountsBusiness
             }
             $store_data[$key] = $value;
         }
+
+        $store_data['admin_users_id'] = Helper::getAdminLoginInfo();
 
         return $this->dao->store($store_data);
     }
