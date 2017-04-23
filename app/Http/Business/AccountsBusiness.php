@@ -19,12 +19,8 @@ class AccountsBusiness
     /**
      * @param array $wechat_info
      */
-    public function store(array $wechat_info = [])
+    public function store(array $wechat_info = [], $authorizer_refresh_token = null)
     {
-        if (empty($wechat_info)) {
-
-        }
-
         $store_data = [];
         foreach ($wechat_info['authorizer_info'] as $key => $value) {
 
@@ -36,10 +32,6 @@ class AccountsBusiness
                 foreach ($value as $business_info_key => $business_info_value) {
                     $store_data[$business_info_key] = $business_info_value;
                 }
-            }
-
-            if ($key != 'business_info') {
-                $store_data[$key] = $value;
             }
         }
 
@@ -57,7 +49,9 @@ class AccountsBusiness
             $store_data[$key] = $value;
         }
 
+
         $store_data['admin_users_id'] = Helper::getAdminLoginInfo();
+        $store_data['authorizer_refresh_token'] = $authorizer_refresh_token;
 
         return $this->dao->store($store_data);
     }

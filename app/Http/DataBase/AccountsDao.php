@@ -17,18 +17,6 @@ class AccountsDao
      */
     public function store(array $store_data = [])
     {
-        $model = $this->model->where('authorizer_appid', $store_data['authorizer_appid'])->first();
-        if (!empty($model)) {
-            $this->model = $model;
-        }
-
-        foreach ($store_data as $key => $value) {
-            $this->model->{$key} = $value;
-        }
-
-        if (!$this->model->save()) {
-            return false;
-        }
-        return $this->model;
+       return $this->model->create($store_data);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Business\AccountsBusiness;
+use App\Http\Controllers\Helper;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -49,19 +50,24 @@ class WechatController extends Controller
         if (empty($auth_code)) {
             redirect(route('wechat.index'));
         }
-        // 获取授权信息
-        $info = $this->open_platform->getAuthorizationInfo($auth_code)->toArray();
-        // 获取授权方的公众号帐号基本信息
-        $wechat_info = $this->open_platform->getAuthorizerInfo($info['authorization_info']['authorizer_appid'])->toArray();
-        // 刷新Token
-        $wechat_info['authorization_info']['authorizer_refresh_token'] = $info['authorization_info']['authorizer_refresh_token'];
-        // 添加授权
-        $result = $accounts_business->store($wechat_info);
-        if (empty($result)){
 
+        try {
+            // 获取授权信息
+            $authorization_info = $this->open_platform->getAuthorizationInfo($auth_code)->toArray();
+
+            // 刷新授权Token
+            $authorizer_refresh_token = $authorization_info['authorization_info']['authorizer_refresh_token'];
+
+            // 获取授权方的公众号帐号基本信息
+            $wechat_info = $this->open_platform->getAuthorizerInfo($authorization_info['authorization_info']['authorizer_appid'])->toArray();
+
+            // 添加公众号授权
+            $accounts_business->store($wechat_info, $authorizer_refresh_token);
+        } catch (\Exception $e) {
+            return redirect(route('wechat.index'));
         }
 
-        //return redirect();
+        return redirect(route('index'));
     }
 
     /**
