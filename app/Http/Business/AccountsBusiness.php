@@ -23,12 +23,12 @@ class AccountsBusiness
                 $value['verify_type_info'] = $value['id'];
             }
 
-            if ($key == 'business_info'){
-                foreach ($value['business_info'] as $business_info_key => $business_info_value){
-                    $store_data[$business_info_key] = $business_info_value;
-                }
-                unset($key);
-            }
+//            if ($key == 'business_info'){
+//                foreach ($value['business_info'] as $business_info_key => $business_info_value){
+//                    $store_data[$business_info_key] = $business_info_value;
+//                }
+//                unset($key);
+//            }
 
             $store_data[$key] = $value;
         }
