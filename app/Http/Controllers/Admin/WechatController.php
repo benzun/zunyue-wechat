@@ -61,7 +61,7 @@ class WechatController extends Controller
 
         }
 
-        return redirect();
+        //return redirect();
     }
 
     /**
