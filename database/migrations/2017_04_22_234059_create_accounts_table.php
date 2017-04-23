@@ -17,7 +17,7 @@ class CreateAccountsTable extends Migration
             $table->increments('id');
             $table->integer('admin_users_id')->unsigned()->default(0)->comment('后台用户id');
             $table->foreign('admin_users_id')->references('id')->on('admin_users');
-            $table->string('authorizer_appid', 45)->default('')->comment('AppId');
+            $table->string('authorizer_appid', 45)->unique()->default('')->comment('AppId');
             $table->string('nick_name', 45)->default('')->comment('昵称');
             $table->string('head_img', 255)->default('')->comment('头像');
             $table->tinyInteger('service_type_info')->default(0)->comment('公众号类型,0订阅号，1升级后的订阅号，2服务号');
