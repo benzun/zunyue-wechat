@@ -60,6 +60,8 @@ class WechatController extends Controller
         if (empty($result)){
 
         }
+
+        return redirect();
     }
 
     /**
