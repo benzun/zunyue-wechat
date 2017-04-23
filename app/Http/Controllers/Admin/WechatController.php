@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Business\AccountsBusiness;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -41,7 +42,7 @@ class WechatController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function callback(Request $request)
+    public function callback(Request $request, AccountsBusiness $accounts_business)
     {
         $auth_code = $request->get('auth_code');
 
@@ -49,10 +50,9 @@ class WechatController extends Controller
             redirect(route('wechat.index'));
         }
         $info = $this->open_platform->getAuthorizationInfo($auth_code)->toArray();
-        $authorizer_refresh_token = $info['authorization_info']['authorizer_refresh_token'];
         // 获取授权方的公众号帐号基本信息
         $wechat_info =$this->open_platform->getAuthorizerInfo($info['authorization_info']['authorizer_appid'])->toArray();
-        dd($wechat_info);
+        $accounts_business->store($wechat_info);
     }
 
     /**
