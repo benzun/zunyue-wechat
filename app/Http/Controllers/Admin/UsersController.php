@@ -91,7 +91,27 @@ class UsersController extends Controller
         $app = app('wechat');
         $app = $app->open_platform->createAuthorizerApplication('wx3a333aa39ef5b545','refreshtoken@@@8z1JqTuOPN7Ho7DliNumcSPZBfN4KeaGE_kb_UB2GoM');
 
-        $openids = $app->user->lists();
-        dd($openids);
+//        $openids = $app->user->lists();
+//        dd($openids);
+
+        $openids = [
+            'ohCsu03V02He0e5wODF3llwTQvQA',
+            'ohCsu0ynjTHtpNjdqREsN1xXTH_g',
+            'ohCsu04uXdqjEuYJiCKB_m9qyBRo',
+        ];
+
+        foreach ($openids as $openid){
+
+            $app->lucky_money->sendNormal([
+                'mch_billno'       => date('YmdHis').rand(10000,99999),
+                'wxappid' => 'wx3a333aa39ef5b545',
+                'send_name' => '尊悦云平台',
+                're_openid'        => $openid,
+                'total_amount'     => 100,
+                'wishing'          => '祝福语',
+                'act_name'         => '测试活动',
+                'remark'           => '测试备注',
+            ]);
+        }
     }
 }
