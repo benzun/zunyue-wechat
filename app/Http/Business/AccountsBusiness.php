@@ -33,6 +33,7 @@ class AccountsBusiness
                     $store_data[$business_info_key] = $business_info_value;
                 }
             }
+            $store_data[$key] = $value;
         }
 
         $fun_infos = config('admin.fun_info');
