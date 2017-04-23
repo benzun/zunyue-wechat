@@ -63,11 +63,6 @@ class AccountsDao
      */
     public function update($authorizer_appid = 0, array $update_data = [])
     {
-        $update_data = array_only($update_data, [
-            'stauts'
-        ]);
-        \Log::info($update_data);
         return $this->model->where('authorizer_appid', $authorizer_appid)->update($update_data);
-
     }
 }
