@@ -34,6 +34,7 @@ class ModelServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind('AdminUsersModel', $this->namespace . '\AdminUsers');
+        $this->app->bind('AccountsModel', $this->namespace . '\Accounts');
     }
 
     /**
@@ -44,7 +45,8 @@ class ModelServiceProvider extends ServiceProvider
     public function provides()
     {
         return [
-            'AdminUsersModel'
+            'AdminUsersModel',
+            'AccountsModel',
         ];
     }
 }

@@ -51,11 +51,15 @@ class WechatController extends Controller
         }
         // 获取授权信息
         $info = $this->open_platform->getAuthorizationInfo($auth_code)->toArray();
-        // 刷新Token
-        $wechat_info['authorizer_refresh_token'] = $info['authorization_info']['authorizer_refresh_token'];
         // 获取授权方的公众号帐号基本信息
         $wechat_info = $this->open_platform->getAuthorizerInfo($info['authorization_info']['authorizer_appid'])->toArray();
-        $accounts_business->store($wechat_info);
+        // 刷新Token
+        $wechat_info['authorization_info']['authorizer_refresh_token'] = $info['authorization_info']['authorizer_refresh_token'];
+        // 添加授权
+        $result = $accounts_business->store($wechat_info);
+        if (empty($result)){
+
+        }
     }
 
     /**

@@ -2,8 +2,19 @@
 
 namespace App\Http\Business;
 
+use App\Http\DataBase\AccountsDao;
+
 class AccountsBusiness
 {
+    /**
+     * AccountsBusiness constructor.
+     * @param AccountsDao $dao
+     */
+    public function __construct(AccountsDao $dao)
+    {
+        $this->dao = $dao;
+    }
+
     /**
      * @param array $wechat_info
      */
@@ -30,9 +41,8 @@ class AccountsBusiness
                 $store_data[$key] = $value;
             }
         }
-        // 异或运算
-        $fun_infos = [0, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768];
 
+        $fun_infos = config('admin.fun_info');
         foreach ($wechat_info['authorization_info'] as $key => $value) {
             if ($key == 'func_info') {
                 // 获取授权权限id
@@ -46,6 +56,6 @@ class AccountsBusiness
             $store_data[$key] = $value;
         }
 
-        dd($store_data);
+        return $this->dao->store($store_data);
     }
 }

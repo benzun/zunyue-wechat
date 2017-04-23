@@ -15,7 +15,8 @@ class CreateAccountsTable extends Migration
     {
         Schema::create('accounts', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('admin_users_id');
+            $table->integer('admin_users_id')->unsigned()->default(0)->comment('后台用户id');
+            $table->foreign('admin_users_id')->references('id')->on('admin_users');
             $table->string('authorizer_appid', 45)->default('')->comment('AppId');
             $table->string('nick_name', 45)->default('')->comment('昵称');
             $table->string('head_img', 255)->default('')->comment('头像');
@@ -35,6 +36,7 @@ class CreateAccountsTable extends Migration
             $table->string('signature', 255)->default('')->comment('公众号描述');
             $table->smallInteger('func_info')->unsigned()->default(0)->comment('公众号权限');
             $table->string('authorizer_refresh_token', 255)->default('')->comment('authorizer_refresh_token');
+            $table->enum('status', ['yes', 'no'])->default('yes')->comment('是否授权');
             $table->timestamps();
         });
     }
