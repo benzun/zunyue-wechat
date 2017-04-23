@@ -31,7 +31,7 @@ class AccountsBusiness
             }
         }
         // 异或运算
-        $fun_infos = [0, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384];
+        $fun_infos = [0, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768];
 
         foreach ($wechat_info['authorization_info'] as $key => $value) {
             if ($key == 'func_info') {
