@@ -13,7 +13,9 @@ class AccountsDao
     }
 
     /**
+     * 授权添加更细公众号信息
      * @param array $store_data
+     * @return bool|\Illuminate\Foundation\Application|mixed
      */
     public function store(array $store_data = [])
     {
@@ -58,11 +60,22 @@ class AccountsDao
     }
 
     /**
+     * 更新公众号信息
      * @param int $authorizer_appid
      * @param array $update_data
+     * @return mixed
      */
     public function update($authorizer_appid = 0, array $update_data = [])
     {
         return $this->model->where('authorizer_appid', $authorizer_appid)->update($update_data);
+    }
+
+    /**
+     * 获取公众号详情信息
+     * @param int $authorizer_appid
+     */
+    public function show($authorizer_appid = 0)
+    {
+        return $this->model->where('authorizer_appid', $authorizer_appid)->first();
     }
 }

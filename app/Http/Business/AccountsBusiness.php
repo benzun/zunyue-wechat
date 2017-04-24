@@ -19,7 +19,6 @@ class AccountsBusiness
 
     /**
      * 授权添加更细公众号信息
-     * Author weixinhua
      * @param array $wechat_info
      * @param null $authorizer_refresh_token
      * @return bool|\Illuminate\Foundation\Application|mixed
@@ -87,7 +86,6 @@ class AccountsBusiness
 
     /**
      * 获取公众号详情信息
-     * Author weixinhua
      * @param int $authorizer_appid
      * @return mixed
      */
