@@ -11,5 +11,6 @@
 |
 */
 
-Route::match(['get', 'post'], '/serve', 'WechatController@serve');
-Route::match(['get', 'post'], '/auth', 'WechatController@auth');
+
+Route::match(['get', 'post'], 'auth', 'WechatController@auth');
+Route::resource('serve', 'WechatController', ['only' => ['show']]);
