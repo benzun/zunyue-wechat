@@ -48,7 +48,7 @@ class AccountsDao
         }
 
         foreach ($store_data as $key => $value) {
-            if (in_array($key, $allow)) {
+            if (in_array($key, $allow) && !empty($value)) {
                 $this->model->{$key} = $value;
             }
         }

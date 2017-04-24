@@ -37,8 +37,17 @@ class WechatController extends Controller
 
         $server->setMessageHandler(function ($event) use ($open_platform, $accounts_business) {
             switch ($event->InfoType) {
-                // 授权取消
-                case Guard::EVENT_UNAUTHORIZED:
+                case Guard::EVENT_AUTHORIZED: // 授权成功
+                    // 获取授权信息
+                    $authorization_info = $this->open_platform->getAuthorizationInfo($event->AuthorizationCode)->toArray();
+                    // 刷新授权Token
+                    $authorizer_refresh_token = $authorization_info['authorization_info']['authorizer_refresh_token'];
+                    // 获取授权方的公众号帐号基本信息
+                    $wechat_info = $this->open_platform->getAuthorizerInfo($authorization_info['authorization_info']['authorizer_appid'])->toArray();
+                    // 添加公众号授权
+                    $accounts_business->store($wechat_info, $authorizer_refresh_token);
+                    break;
+                case Guard::EVENT_UNAUTHORIZED:  // 授权取消
                     $accounts_business->update($event->AuthorizerAppid, [
                         'status' => 'no'
                     ]);
@@ -57,7 +66,6 @@ class WechatController extends Controller
      */
     public function serve($authorizer_appid = null, AccountsBusiness $accounts_business)
     {
-        \Log::info('service');
         $open_platform = $this->open_platform;
         // 获取授权公众号详情
         $wechat_info = $accounts_business->show($authorizer_appid);
