@@ -55,7 +55,7 @@ class WechatController extends Controller
      * @param AccountsBusiness $accounts_business
      * @return mixed
      */
-    public function show($authorizer_appid = null, AccountsBusiness $accounts_business)
+    public function serve($authorizer_appid = null, AccountsBusiness $accounts_business)
     {
         \Log::info('service');
         $open_platform = $this->open_platform;

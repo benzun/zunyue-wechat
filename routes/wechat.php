@@ -11,6 +11,5 @@
 |
 */
 
-
+Route::match(['get', 'post'], 'serve/{authorizer_appid}', 'WechatController@serve');
 Route::match(['get', 'post'], 'auth', 'WechatController@auth');
-Route::resource('serve', 'WechatController', ['only' => ['show']]);
