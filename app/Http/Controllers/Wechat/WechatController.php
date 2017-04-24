@@ -73,13 +73,20 @@ class WechatController extends Controller
         $app = $open_platform->createAuthorizerApplication($authorizer_appid, $wechat_info->authorizer_refresh_token);
         // 授权公众号服务端
         $server = $app->server;
-        $server->setMessageHandler(function ($message) {
+        $server->setMessageHandler(function ($message) use($app) {
             switch ($message->MsgType) {
                 case 'event':
                     return $message->Event.'from_callback';
                     break;
                 case 'text':
-                    return $message->Content.'_callback';
+                    $content = $message->Content;
+                    if (strpos($content,'QUERY_AUTH_CODE') !== false){
+                        \Log::info($content);
+                        $string = str_replace('QUERY_AUTH_CODE:','',$content);
+                        \Log::info($string);
+                        return $app->staff->message($string.'_from_api')->to($message->FromUserName)->send();
+                    }
+                    return $content.'_callback';
                     break;
                 case 'image':
                     return '收到图片消息';
