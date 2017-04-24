@@ -76,10 +76,10 @@ class WechatController extends Controller
         $server->setMessageHandler(function ($message) {
             switch ($message->MsgType) {
                 case 'event':
-                    return '收到事件消息';
+                    return $message->Event.'from_callback';
                     break;
                 case 'text':
-                    return '收到文字消息';
+                    return $message->Content.'_callback';
                     break;
                 case 'image':
                     return '收到图片消息';
